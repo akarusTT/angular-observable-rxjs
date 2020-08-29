@@ -3,6 +3,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 export interface Post {
   userId: number;
@@ -15,12 +16,9 @@ export interface Post {
   providedIn: 'root',
 })
 export class GetPostsService {
-  REST_API =
-    'https://jsonplaceholder.typicode.com/akarusTT/angular-observable-rxjs/posts';
-
   constructor(private http: HttpClient) {}
 
   getPosts(): Observable<Post[]> {
-    return this.http.get<Post[]>(`${this.REST_API}`);
+    return this.http.get<Post[]>(`${environment.REST_API}/posts`);
   }
 }
