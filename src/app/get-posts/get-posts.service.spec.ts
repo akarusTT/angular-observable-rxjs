@@ -4,6 +4,7 @@ import {
   HttpTestingController,
 } from '@angular/common/http/testing';
 import { GetPostsService } from './get-posts.service';
+import { environment } from '../../environments/environment';
 
 describe('GetPostsService', () => {
   let getPostsService: GetPostsService;
@@ -57,9 +58,7 @@ describe('GetPostsService', () => {
           expect(posts.length).toBe(3);
         });
 
-        const req = httpMock.expectOne(
-          'https://jsonplaceholder.typicode.com/posts'
-        );
+        const req = httpMock.expectOne(environment.REST_API + '/posts');
         expect(req.request.method).toBe('GET');
 
         req.flush(postItem);
